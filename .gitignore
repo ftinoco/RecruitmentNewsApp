@@ -1,2 +1,4 @@
 /packages
 /.vs
+/NewsApp.API/bin
+/NewsApp.API/obj
