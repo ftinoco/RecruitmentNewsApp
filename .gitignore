@@ -2,3 +2,5 @@
 /.vs
 /NewsApp.API/bin
 /NewsApp.API/obj
+/NewsApp.Web/bin
+/NewsApp.Web/obj
