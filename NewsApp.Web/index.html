@@ -1,10 +1,72 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="newsApp">
 <head>
-    <title></title>
-	<meta charset="utf-8" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Página de noticias">
+    <meta name="author" content="Fernando Tinoco">
+    <title>Noticias</title>
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/site.css" rel="stylesheet">
+
+    <script type="text/javascript" src="assets/libs/angular/angular.min.js"></script>
+    <script type="text/javascript" src="assets/libs/angular/angular-message.min.js"></script>
+    <script type="text/javascript" src="assets/libs/angular-aria/angular-aria.min.js"></script>
+    <script type="text/javascript" src="assets/libs/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="assets/libs/angular-resource/angular-resource.min.js"></script>
+
 </head>
-<body>
-    <h1>Hello world!</h1>
+<body ng-controller="mainCtrl">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top {{active}}">
+        <div class="container">
+            <a class="navbar-brand" href="#">Noticias</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link home" href="#/" ng-click="active='home'">
+                            Inicio
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link explore" ng-click="active='explore'" href="#/explore">Explorar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <section flex ng-view></section>
+    </div>
+    <footer class="py-5 bg-dark">
+        <div class="container">
+            <p class="m-0 text-center text-white">
+                <small>
+                    &copy;
+                    <script type="text/javascript">
+                        //<![CDATA[
+                        var d = new Date()
+                        document.write(d.getFullYear())
+                        //]]>
+                    </script> Test
+                </small>
+        </div>
+        </p>
+    </footer>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Main -->
+    <script type="text/javascript" src="app/app.js"></script>
+    <!-- Services -->
+    <script type="text/javascript" src="app/services/news.service.js"></script>
+    <!-- Filters -->
+    <script type="text/javascript" src="app/filters/filters.js"></script>
+    <!-- Controller -->
+    <script type="text/javascript" src="app/controllers/home.controller.js"></script>
+    <script type="text/javascript" src="app/controllers/explore.controller.js"></script>
 </body>
 </html>

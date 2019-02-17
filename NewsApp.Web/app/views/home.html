@@ -1,0 +1,20 @@
+﻿<h1 class="my-4">
+    Destacados
+</h1> 
+<section ng-repeat="_news in news">
+    <div class="row">
+        <div class="col-md-7">
+            <a href="#">
+                <img class="img-fluid rounded mb-3 mb-md-0" src="{{ _news.imgURL }}">
+            </a>
+        </div>
+        <div class="col-md-5">
+            <h3>{{ _news.title }}</h3> 
+            <div class="content" ng-bind-html="_news.content | trust"></div>
+            <div style="text-align:right">
+                <small><strong>Fecha de publicación:</strong> {{ _news.publishedDate | date:"dd/MM/yyyy" }}</small>
+            </div>
+        </div>
+    </div>
+    <hr>
+</section>

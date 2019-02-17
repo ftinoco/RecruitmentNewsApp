@@ -105,11 +105,43 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="app\app.js" />
+    <Content Include="app\controllers\explore.controller.js" />
+    <Content Include="app\controllers\home.controller.js" />
+    <Content Include="app\filters\filters.js" />
+    <Content Include="app\views\explore.html" />
+    <Content Include="app\views\home.html" />
+    <Content Include="assets\css\site.css" />
+    <Content Include="assets\js\mdPickers.min.js" />
+    <Content Include="assets\js\moment.min.js" />
+    <Content Include="assets\libs\angular-aria\angular-aria.js" />
+    <Content Include="assets\libs\angular-aria\angular-aria.min.js" />
+    <Content Include="assets\libs\angular-resource\angular-resource.js" />
+    <Content Include="assets\libs\angular-resource\angular-resource.min.js" />
+    <Content Include="assets\libs\angular-route\angular-route.js" />
+    <Content Include="assets\libs\angular-route\angular-route.min.js" />
+    <Content Include="assets\libs\angular\angular-message.min.js" />
+    <Content Include="assets\libs\angular\angular-mocks.js" />
+    <Content Include="assets\libs\angular\angular.js" />
+    <Content Include="assets\libs\angular\angular.min.js" />
     <Content Include="index.html" />
     <Content Include="packages.config" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="assets\libs\angular-aria\angular-aria.min.js.map" />
+    <Content Include="assets\libs\angular-resource\angular-resource.min.js.map" />
+    <Content Include="assets\libs\angular-route\angular-route.min.js.map" />
+    <Content Include="assets\libs\angular\angular.min.js.map" />
+    <Content Include="app\services\news.service.js" />
+    <Content Include="vendor\bootstrap\css\bootstrap.css.map" />
+    <Content Include="vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="vendor\bootstrap\js\bootstrap.js.map" />
+    <Content Include="vendor\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="vendor\jquery\jquery.min.map" />
+    <Content Include="vendor\jquery\jquery.slim.min.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -118,13 +150,22 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="scripts\ai.0.22.9-build00167.js" />
-    <Content Include="scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="vendor\bootstrap\css\bootstrap.css" />
+    <Content Include="vendor\bootstrap\css\bootstrap.min.css" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="vendor\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="vendor\bootstrap\js\bootstrap.js" />
+    <Content Include="vendor\bootstrap\js\bootstrap.min.js" />
+    <Content Include="vendor\jquery\jquery.js" />
+    <Content Include="vendor\jquery\jquery.min.js" />
+    <Content Include="vendor\jquery\jquery.slim.js" />
+    <Content Include="vendor\jquery\jquery.slim.min.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
