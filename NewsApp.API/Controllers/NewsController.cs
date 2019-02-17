@@ -1,41 +1,82 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using NewsApp.API.Models;
+using NewsApp.API.Models.Context;
+using System;
+using System.Data;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Cors;
 
 namespace NewsApp.API.Controllers
 {
-    [EnableCors(origins: "http://localhost/NewsApp.Web", headers: "*", methods: "*")]
+    [RoutePrefix("api/news")]
     public class NewsController : ApiController
     {
-        // GET: api/News
-        public IEnumerable<string> Get()
+        private DatabaseContext db = new DatabaseContext();
+
+        [Route("{amountOutstanding}")]
+        public IQueryable<News> GetNews(int amountOutstanding)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return db.News.OrderBy(n => Guid.NewGuid()).Take(amountOutstanding);
+            }
+            catch (Exception ex)
+            {
+                // Se deberia de registrar en un log de errores
+                var resp = new HttpResponseMessage(HttpStatusCode.BadRequest)
+                {
+                    Content = new StringContent(ex.Message)
+                };
+                throw new HttpResponseException(resp);
+            }
         }
 
-        // GET: api/News/5
-        public string Get(int id)
+        [HttpPost]
+        [Route("list")]
+        public HttpResponseMessage GetNewsByFilter(FilterModel filter)
         {
-            return "value";
-        }
+            IQueryable<News> lst = null;
+            HttpResponseMessage response = new HttpResponseMessage();
 
-        // POST: api/News
-        public void Post([FromBody]string value)
-        {
-        }
+            try
+            {
+                if ((filter.endDate.HasValue && !filter.startDate.HasValue) || (!filter.endDate.HasValue && filter.startDate.HasValue))
+                    response = Request.CreateResponse(HttpStatusCode.BadRequest, "Se debe proporcionar información fecha de inicio y fecha fin");
 
-        // PUT: api/News/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+                if (filter.endDate.HasValue && filter.startDate.HasValue && !string.IsNullOrWhiteSpace(filter.strFilter))
+                {
+                    lst = db.News.Where(x => x.title.ToLower().Contains(filter.strFilter.ToLower()) &&
+                                                              (x.publishedDate >= filter.startDate.Value &&
+                                                               x.publishedDate <= filter.endDate.Value))
+                                             .OrderByDescending(p => p.publishedDate);
 
-        // DELETE: api/News/5
-        public void Delete(int id)
-        {
+                }
+                else if (filter.endDate.HasValue && filter.startDate.HasValue && string.IsNullOrWhiteSpace(filter.strFilter))
+                {
+                    lst = db.News.Where(x => x.publishedDate >= filter.startDate.Value && x.publishedDate <= filter.endDate.Value)
+                                             .OrderByDescending(p => p.publishedDate);
+
+                }
+                else if (!filter.endDate.HasValue && !filter.startDate.HasValue && !string.IsNullOrWhiteSpace(filter.strFilter))
+                    lst = db.News.Where(x => x.title.ToLower().Contains(filter.strFilter.ToLower())).OrderByDescending(p => p.publishedDate);
+                else // Sino se mando información de filtro se muestan las 5 noticias más recientes
+                    lst = db.News.OrderByDescending(p => p.publishedDate).Take(5);
+
+
+                if (lst == null || (lst != null && lst.Count() == 0))
+                    response = Request.CreateResponse(HttpStatusCode.NoContent, "No se encontraron registros", "application/json");
+                else
+                    response = Request.CreateResponse(HttpStatusCode.OK, lst, "application/json");
+            }
+            catch (Exception ex)
+            {
+                // Se deberia de registrar en un log de errores
+                response = Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message);
+            }
+
+            return response;
         }
     }
 }
