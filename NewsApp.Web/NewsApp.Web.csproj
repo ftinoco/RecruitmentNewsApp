@@ -112,7 +112,7 @@
     <Content Include="app\views\explore.html" />
     <Content Include="app\views\home.html" />
     <Content Include="assets\css\site.css" />
-    <Content Include="assets\js\mdPickers.min.js" />
+    <Content Include="assets\js\moment-with-locales.min.js" />
     <Content Include="assets\js\moment.min.js" />
     <Content Include="assets\libs\angular-aria\angular-aria.js" />
     <Content Include="assets\libs\angular-aria\angular-aria.min.js" />
@@ -142,6 +142,7 @@
     <Content Include="vendor\bootstrap\js\bootstrap.min.js.map" />
     <Content Include="vendor\jquery\jquery.min.map" />
     <Content Include="vendor\jquery\jquery.slim.min.map" />
+    <Content Include="vendor\moment-picker\themes\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -160,6 +161,12 @@
     <Content Include="vendor\jquery\jquery.min.js" />
     <Content Include="vendor\jquery\jquery.slim.js" />
     <Content Include="vendor\jquery\jquery.slim.min.js" />
+    <Content Include="vendor\moment-picker\angular-moment-picker.css" />
+    <Content Include="vendor\moment-picker\angular-moment-picker.js" />
+    <Content Include="vendor\moment-picker\angular-moment-picker.min.css" />
+    <Content Include="vendor\moment-picker\angular-moment-picker.min.js" />
+    <Content Include="vendor\moment-picker\themes\material-ui.css" />
+    <Content Include="vendor\moment-picker\themes\material-ui.min.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

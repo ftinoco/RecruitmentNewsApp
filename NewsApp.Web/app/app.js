@@ -1,7 +1,7 @@
 ﻿var app = angular.module("newsApp", [
         'ngRoute', 'ngResource',
         'ngAria', 'ngMessages',
-        'globalFilters'
+        'globalFilters', 'moment-picker'
 ]);
 
 app.config(function ($routeProvider) {

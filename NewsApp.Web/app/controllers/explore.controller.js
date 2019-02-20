@@ -3,7 +3,8 @@ app.controller('ExploreController', ['$scope', 'News',
     function ($scope, News) {
         $scope.filter = {};
 
-        $scope.buscar = function () {
+        $scope.search = function () {
+            console.log($scope.filter);
             News.filter.query($scope.filter, function (data) {
                 $scope.news = data;
             }, function (response) {
@@ -11,7 +12,7 @@ app.controller('ExploreController', ['$scope', 'News',
             });
         }
 
-        $scope.buscar();
+        $scope.search();
 
     }
 ])
